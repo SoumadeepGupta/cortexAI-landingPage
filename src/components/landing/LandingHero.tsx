@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { appUrl } from "../../config/appOrigin";
 import { CortexIcon } from "../shared/CortexIcon";
 import { ProviderLogo } from "../shared/ProviderLogo";
 import { ScrollReveal } from "./ScrollReveal";
@@ -47,7 +47,6 @@ const HERO_EXAMPLES = [
 ];
 
 export function LandingHero() {
-  const navigate = useNavigate();
   const [activeIdx, setActiveIdx] = useState(0);
 
   useEffect(() => {
@@ -91,7 +90,9 @@ export function LandingHero() {
             <button
               type="button"
               className={styles.primaryCta}
-              onClick={() => navigate("/")}
+              onClick={() => {
+                window.location.href = appUrl("/");
+              }}
             >
               <span>Get Started Free</span>
               <CortexIcon name="chevron-right" size={16} strokeWidth={2.5} />

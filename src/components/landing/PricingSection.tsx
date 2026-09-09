@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { appUrl } from "../../config/appOrigin";
 import { CortexIcon } from "../shared/CortexIcon";
 import { ScrollReveal } from "./ScrollReveal";
 import styles from "./PricingSection.module.css";
@@ -90,14 +90,13 @@ interface PricingSectionProps {
 }
 
 export function PricingSection({ onSelectPlan }: PricingSectionProps) {
-  const navigate = useNavigate();
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly");
 
   const handlePlanClick = (tier: PlanTier) => {
     if (onSelectPlan) {
       onSelectPlan(tier.id);
     } else {
-      navigate("/pricing");
+      window.location.href = appUrl("/pricing");
     }
   };
 

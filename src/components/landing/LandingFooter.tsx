@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { appUrl } from "../../config/appOrigin";
 import brandMarkUrl from "../../assets/brand/brand-mark.svg";
 import { CortexIcon } from "../shared/CortexIcon";
 import { ScrollReveal } from "./ScrollReveal";
@@ -12,14 +12,16 @@ interface LandingFooterProps {
 }
 
 export function LandingFooter({ theme, onToggleTheme, onNavigate }: LandingFooterProps) {
-  const navigate = useNavigate();
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const scrollToSection = (id: string) => {
     onNavigate(id);
+  };
+
+  const goToApp = (path: string) => {
+    window.location.href = appUrl(path);
   };
 
   return (
@@ -40,7 +42,7 @@ export function LandingFooter({ theme, onToggleTheme, onNavigate }: LandingFoote
               <button
                 type="button"
                 className={styles.ctaPrimary}
-                onClick={() => navigate("/")}
+                onClick={() => goToApp("/")}
               >
                 <span>Launch CortexAI Workspace</span>
                 <CortexIcon name="chevron-right" size={16} strokeWidth={2.5} />
@@ -87,27 +89,27 @@ export function LandingFooter({ theme, onToggleTheme, onNavigate }: LandingFoote
             <h4>Product</h4>
             <ul>
               <li>
-                <button type="button" onClick={() => navigate("/")}>
+                <button type="button" onClick={() => goToApp("/")}>
                   Ask & Chat
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => navigate("/")}>
+                <button type="button" onClick={() => goToApp("/")}>
                   Multi-Model Compare
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => navigate("/models")}>
+                <button type="button" onClick={() => goToApp("/models")}>
                   Models Catalogue
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => navigate("/credits")}>
+                <button type="button" onClick={() => goToApp("/credits")}>
                   AI Credit Wallet
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => navigate("/usage")}>
+                <button type="button" onClick={() => goToApp("/usage")}>
                   Usage Insights
                 </button>
               </li>
@@ -166,7 +168,7 @@ export function LandingFooter({ theme, onToggleTheme, onNavigate }: LandingFoote
                 </button>
               </li>
               <li>
-                <button type="button" onClick={() => navigate("/account/billing")}>
+                <button type="button" onClick={() => goToApp("/account/billing")}>
                   Stripe Billing Portal
                 </button>
               </li>

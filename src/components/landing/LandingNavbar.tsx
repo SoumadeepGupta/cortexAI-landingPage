@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { appUrl } from "../../config/appOrigin";
 import brandMarkUrl from "../../assets/brand/brand-mark.svg";
 import { CortexIcon } from "../shared/CortexIcon";
 import type { AppTheme } from "../../hooks/useTheme";
@@ -20,7 +20,6 @@ export function LandingNavbar({
   onLogin,
   onNavigate,
 }: LandingNavbarProps) {
-  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -35,6 +34,10 @@ export function LandingNavbar({
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
     onNavigate(id);
+  };
+
+  const goToApp = (path: string) => {
+    window.location.href = appUrl(path);
   };
 
   return (
@@ -92,7 +95,7 @@ export function LandingNavbar({
             <button
               type="button"
               className={styles.primaryButton}
-              onClick={() => navigate("/")}
+              onClick={() => goToApp("/")}
             >
               <span>Launch Workspace</span>
               <CortexIcon name="chevron-right" size={14} strokeWidth={2.5} />
@@ -111,7 +114,7 @@ export function LandingNavbar({
               <button
                 type="button"
                 className={styles.primaryButton}
-                onClick={() => navigate("/")}
+                onClick={() => goToApp("/")}
               >
                 <span>Launch App</span>
                 <CortexIcon name="chevron-right" size={14} strokeWidth={2.5} />
@@ -162,7 +165,7 @@ export function LandingNavbar({
               className={styles.mobileNavLink}
               onClick={() => {
                 setMobileMenuOpen(false);
-                navigate("/");
+                goToApp("/");
               }}
             >
               Open Chat Workspace
