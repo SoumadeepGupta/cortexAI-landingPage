@@ -8,16 +8,12 @@ import styles from "./LandingNavbar.module.css";
 interface LandingNavbarProps {
   theme: AppTheme;
   onToggleTheme: () => void;
-  loggedIn?: boolean;
-  onLogin?: () => void;
   onNavigate: (id: string) => void;
 }
 
 export function LandingNavbar({
   theme,
   onToggleTheme,
-  loggedIn = false,
-  onLogin,
   onNavigate,
 }: LandingNavbarProps) {
   const [scrolled, setScrolled] = useState(false);
@@ -91,36 +87,23 @@ export function LandingNavbar({
             <CortexIcon name={theme === "dark" ? "sun" : "moon"} size={18} />
           </button>
 
-          {loggedIn ? (
+          <div className={styles.authButtons}>
+            <button
+              type="button"
+              className={styles.secondaryButton}
+              onClick={() => goToApp("/")}
+            >
+              Sign In
+            </button>
             <button
               type="button"
               className={styles.primaryButton}
               onClick={() => goToApp("/")}
             >
-              <span>Launch Workspace</span>
+              <span>Launch App</span>
               <CortexIcon name="chevron-right" size={14} strokeWidth={2.5} />
             </button>
-          ) : (
-            <div className={styles.authButtons}>
-              {onLogin && (
-                <button
-                  type="button"
-                  className={styles.secondaryButton}
-                  onClick={onLogin}
-                >
-                  Sign In
-                </button>
-              )}
-              <button
-                type="button"
-                className={styles.primaryButton}
-                onClick={() => goToApp("/")}
-              >
-                <span>Launch App</span>
-                <CortexIcon name="chevron-right" size={14} strokeWidth={2.5} />
-              </button>
-            </div>
-          )}
+          </div>
 
           <button
             type="button"

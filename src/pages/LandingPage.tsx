@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useAuth } from "../hooks/useAuth";
 import { useTheme } from "../hooks/useTheme";
 import { useCursorSpotlight } from "../components/landing/useCursorSpotlight";
 import { CortexIcon } from "../components/shared/CortexIcon";
@@ -25,7 +24,6 @@ const DETAIL_ANCHOR_IDS = new Set([
 
 export function LandingPage() {
   const { theme, toggleTheme } = useTheme();
-  const { loggedIn, login } = useAuth();
   const containerRef = useCursorSpotlight();
   const [scrollProgress, setScrollProgress] = useState(0);
   const [detailsExpanded, setDetailsExpanded] = useState(false);
@@ -82,8 +80,6 @@ export function LandingPage() {
       <LandingNavbar
         theme={theme}
         onToggleTheme={toggleTheme}
-        loggedIn={loggedIn}
-        onLogin={login}
         onNavigate={handleNavigate}
       />
 
