@@ -151,6 +151,16 @@ export function LandingNavbar({
                 goToApp("/");
               }}
             >
+              Sign In
+            </button>
+            <button
+              type="button"
+              className={styles.mobileNavLink}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                goToApp("/");
+              }}
+            >
               Open Chat Workspace
             </button>
           </nav>
